@@ -1,0 +1,21 @@
+from bs4 import BeautifulSoup as bs
+from urllib.request import urlopen as ureq
+
+'''
+#fetching LTI stock price data from news18 website
+url = 'https://www.news18.com/stocks/computers-software/larsen-toubro-infotech-LI09.html'
+bse  = data.find("span", {"class": "bl_15"}).text
+price  = data.find("span", {"id": "Bse_Prc_tick"}).text
+print(title + ": " + bse + " - " + price)
+'''
+
+#Fetching LTI's stock price data forom finance.yahoo
+
+url = 'https://finance.yahoo.com/quote/LTI.NS?p=LTI.NS&.tsrc=fin-srch'
+ucli = ureq(url)
+page_html = ucli.read()
+ucli.close()
+data = bs(page_html, "html.parser")
+data1 =  data.find('div',{'class': 'My(6px) Pos(r) smartphone_Mt(6px)'})
+name = data.h1.text
+print(name + ' is :' + data1.div.span.text)
