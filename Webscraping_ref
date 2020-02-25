@@ -1,0 +1,41 @@
+Combination of python functions,matplotlib,web scraping using bs4 and pandas.
+
+#Webscraping
+#Mandatory libraries to be imported
+
+from bs4 import BeautifulSoup as soup
+import bs4
+from urllib.request import urlopen as uReq
+
+myurl = 'https://www.ticketnew.com/online-advance-booking/Movies/C/Chennai'
+
+#Grab the URL or connection to the webpage
+uclient = uReq(myurl)
+
+#offloads the content into variable
+page_html = uclient.read()
+
+#close the connection
+uclient.close()
+
+#page HTML parsing
+ps = soup(page_html, "html.parser")
+
+#print(ps.prettify())
+#display with header <h>
+#print(ps.title)
+
+#display the data
+#all the tags can be accessed using the object
+#print(ps.title.string)
+#print(ps.title.text)
+#print(ps.title.parent.name)
+#print(ps.a)
+#print(ps.find_all('a'))
+#print(ps.find('a'))
+
+#to get all the links in the URL
+#for i in ps.find_all('a'):
+#	print(i.get('href'))
+
+#print(ps.get_text())
